@@ -19,6 +19,8 @@ Simple test results reporter for ICTU quality system.
 
 ```
 
+You can have all reports installed with their default values if you omit the corresponding options attribute. This means that if you just invoke *addJasmineReporters* without an argument all reporters will be added with their default values.
+
 # To send results to your test results collection service
 ```
   reporter = require 'testx-ictu-reporter'
