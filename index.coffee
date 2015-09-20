@@ -1,7 +1,24 @@
 FormData = require 'form-data'
 fs = require 'fs'
 
-report = (url, reportFile, options) ->
+addReporters = (opts) ->
+  unless opts?.junit is false
+    require 'jasmine-reporters'
+    dir = opts?.html?.dir || 'testresults/junit'
+    file = opts?.html?.file || 'junit'
+    jasmine.getEnv().addReporter(new jasmine.JUnitXmlReporter dir, true, true, file, true)
+
+  unless opts?.html is false
+    HtmlReporter = require 'protractor-html-screenshot-reporter'
+    dir = opts?.html?.dir ||'testresults/html'
+    jasmine.getEnv().addReporter(new HtmlReporter baseDirectory: dir)
+
+  unless opts?.spec is false
+    require 'jasmine-spec-reporter'
+    jasmine.getEnv().addReporter new jasmine.SpecReporter(displayStacktrace: opts?.spec?.displayStacktrace || false)
+
+
+sendResults = (url, reportFile, options) ->
   console.log "Sending test results from #{reportFile} to the repository at #{url}"
   form = new FormData()
   form.append 'junit', fs.createReadStream(reportFile)
@@ -16,4 +33,6 @@ report = (url, reportFile, options) ->
     if err then throw err
     console.log 'Results sent!'
 
-module.exports = report
+module.exports =
+  sendResults: sendResults
+  addJasmineReporters: -> addReporters browser?.params?.testx?.reporters
