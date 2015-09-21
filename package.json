@@ -1,6 +1,6 @@
 {
   "name": "testx-ictu-reporter",
-  "version": "0.3.0",
+  "version": "0.2.1",
   "description": "A reporter for exporting test results to ICTU test results repository.",
   "main": "index.coffee",
   "dependencies": {
