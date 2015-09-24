@@ -6,8 +6,7 @@ addJunitReporter = (opts) ->
     require 'jasmine-reporters'
     dir = opts?.dir || 'testresults/junit'
     file = opts?.file || 'junit'
-    console.log dir, file
-    # jasmine.getEnv().addReporter(new jasmine.JUnitXmlReporter dir, true, true, file, true)
+    jasmine.getEnv().addReporter(new jasmine.JUnitXmlReporter dir, true, true, file, true)
 
 addHtmlReporter = (opts) ->
   unless opts is false
