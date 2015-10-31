@@ -1,29 +1,6 @@
 FormData = require 'form-data'
 fs = require 'fs'
 
-addJunitReporter = (opts) ->
-  unless opts is false
-    require 'jasmine-reporters'
-    dir = opts?.dir || 'testresults/junit'
-    file = opts?.file || 'junit'
-    jasmine.getEnv().addReporter(new jasmine.JUnitXmlReporter dir, true, true, file, true)
-
-addHtmlReporter = (opts) ->
-  unless opts is false
-    HtmlReporter = require 'protractor-html-screenshot-reporter'
-    dir = opts?.dir ||'testresults/html'
-    jasmine.getEnv().addReporter(new HtmlReporter baseDirectory: dir)
-
-addSpecReporter = (opts) ->
-  unless opts is false
-    require 'jasmine-spec-reporter'
-    jasmine.getEnv().addReporter new jasmine.SpecReporter(displayStacktrace: opts?.displayStacktrace || false)
-
-addReporters = (opts) ->
-  addJunitReporter opts?.junit
-  addHtmlReporter opts?.html
-  addSpecReporter opts?.spec
-
 sendResults = (url, reportFile, options) ->
   console.log "Sending test results from #{reportFile} to the repository at #{url}"
   fs.stat reportFile, (err, stat) ->
@@ -47,4 +24,4 @@ sendResults = (url, reportFile, options) ->
         throw new Error "#{reportFile} is not a file."
 module.exports =
   sendResults: sendResults
-  addJasmineReporters: addReporters
+  addJasmineReporters: require('testx-jasmine-reporters')
