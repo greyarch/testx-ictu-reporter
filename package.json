@@ -1,12 +1,12 @@
 {
   "name": "testx-ictu-reporter",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A reporter for exporting test results to ICTU test results repository.",
   "main": "index.coffee",
   "dependencies": {
     "coffee-errors": "^0.8.6",
     "form-data": "^0.2.0",
-    "testx-jasmine-reporters": "^1.1.0"
+    "testx-jasmine-reporters": "^1.1.1"
   },
   "devDependencies": {
     "coffee-script": "^1.10.0"
