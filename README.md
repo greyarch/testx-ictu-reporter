@@ -27,6 +27,8 @@ If you do not want to add certain reporter simply set the corresponding option a
     html: false
 ```
 
+For further details on configuring your reporters please take a look at [testx-jasmine-reporters](https://github.com/testxio/testx-jasmine-reporters).
+
 ### To send results to your test results collection service
 ```
   reporter = require 'testx-ictu-reporter'
